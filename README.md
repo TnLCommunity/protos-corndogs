@@ -1,1 +1,2 @@
 # protos-corndogs
+Corndogs protos
