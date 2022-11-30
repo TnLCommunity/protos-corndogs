@@ -27,7 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: crazy-max/ghaction-dump-context@v1
-      - uses: tnlcommunity/action-buf@v1
+      - uses: catalystsquad/action-buf@v1
         with:
+          token: ${{ secrets.GIT_RUNNER_TOKEN }}
           buf-user: ${{ secrets.BUF_USER }}
           buf-token: ${{ secrets.BUF_TOKEN }}
