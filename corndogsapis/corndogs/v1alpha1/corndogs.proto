@@ -78,6 +78,10 @@ message CancelTaskResponse {
   Task task = 1;
 }
 
+message CleanUpTimedOut {
+  int64 at_time = 1;
+}
+
 message EmptyRequest {}
 
 service CorndogsService {
