@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/TnLCommunity/protos-corndogs/compare/v1.0.2...v1.1.0) (2022-12-01)
+
+
+### Bug Fixes
+
+* add back an updated buf.lock ([8710e63](https://github.com/TnLCommunity/protos-corndogs/commit/8710e63fe89a692f1ad37ebe15840ee640d04497))
+* remove buf.lock since it references a nonexistant commit ([b9310dd](https://github.com/TnLCommunity/protos-corndogs/commit/b9310dd094a0c648df9574780f8a67951e8b990d))
+* switch to catalystsquad action-buf since its more up to date ([9ba340e](https://github.com/TnLCommunity/protos-corndogs/commit/9ba340ea9544460e9996a2a6151d06451150b9c3))
+
+
+### Features
+
+* add CleanUpTimedOut message ([0b0236c](https://github.com/TnLCommunity/protos-corndogs/commit/0b0236c334ea89a06cc06de9c7a6062d0f831fc4))
+
 ## [1.0.2](https://github.com/TnLCommunity/protos-corndogs/compare/v1.0.1...v1.0.2) (2022-12-01)
 
 
