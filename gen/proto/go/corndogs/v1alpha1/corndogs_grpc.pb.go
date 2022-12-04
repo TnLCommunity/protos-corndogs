@@ -28,6 +28,7 @@ type CorndogsServiceClient interface {
 	UpdateTask(ctx context.Context, in *UpdateTaskRequest, opts ...grpc.CallOption) (*UpdateTaskResponse, error)
 	CompleteTask(ctx context.Context, in *CompleteTaskRequest, opts ...grpc.CallOption) (*CompleteTaskResponse, error)
 	CancelTask(ctx context.Context, in *CancelTaskRequest, opts ...grpc.CallOption) (*CancelTaskResponse, error)
+	CleanUpTimedOut(ctx context.Context, in *CleanUpTimedOutRequest, opts ...grpc.CallOption) (*CleanUpTimedOutResponse, error)
 }
 
 type corndogsServiceClient struct {
@@ -92,6 +93,15 @@ func (c *corndogsServiceClient) CancelTask(ctx context.Context, in *CancelTaskRe
 	return out, nil
 }
 
+func (c *corndogsServiceClient) CleanUpTimedOut(ctx context.Context, in *CleanUpTimedOutRequest, opts ...grpc.CallOption) (*CleanUpTimedOutResponse, error) {
+	out := new(CleanUpTimedOutResponse)
+	err := c.cc.Invoke(ctx, "/corndogs.v1alpha1.CorndogsService/CleanUpTimedOut", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CorndogsServiceServer is the server API for CorndogsService service.
 // All implementations should embed UnimplementedCorndogsServiceServer
 // for forward compatibility
@@ -102,6 +112,7 @@ type CorndogsServiceServer interface {
 	UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskResponse, error)
 	CompleteTask(context.Context, *CompleteTaskRequest) (*CompleteTaskResponse, error)
 	CancelTask(context.Context, *CancelTaskRequest) (*CancelTaskResponse, error)
+	CleanUpTimedOut(context.Context, *CleanUpTimedOutRequest) (*CleanUpTimedOutResponse, error)
 }
 
 // UnimplementedCorndogsServiceServer should be embedded to have forward compatible implementations.
@@ -125,6 +136,9 @@ func (UnimplementedCorndogsServiceServer) CompleteTask(context.Context, *Complet
 }
 func (UnimplementedCorndogsServiceServer) CancelTask(context.Context, *CancelTaskRequest) (*CancelTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelTask not implemented")
+}
+func (UnimplementedCorndogsServiceServer) CleanUpTimedOut(context.Context, *CleanUpTimedOutRequest) (*CleanUpTimedOutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CleanUpTimedOut not implemented")
 }
 
 // UnsafeCorndogsServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -246,6 +260,24 @@ func _CorndogsService_CancelTask_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CorndogsService_CleanUpTimedOut_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CleanUpTimedOutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CorndogsServiceServer).CleanUpTimedOut(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/corndogs.v1alpha1.CorndogsService/CleanUpTimedOut",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CorndogsServiceServer).CleanUpTimedOut(ctx, req.(*CleanUpTimedOutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CorndogsService_ServiceDesc is the grpc.ServiceDesc for CorndogsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -276,6 +308,10 @@ var CorndogsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CancelTask",
 			Handler:    _CorndogsService_CancelTask_Handler,
+		},
+		{
+			MethodName: "CleanUpTimedOut",
+			Handler:    _CorndogsService_CleanUpTimedOut_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
