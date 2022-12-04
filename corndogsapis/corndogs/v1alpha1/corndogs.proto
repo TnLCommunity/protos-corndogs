@@ -82,8 +82,8 @@ message CleanUpTimedOutRequest {
   int64 at_time = 1;
 }
 
-message CleanUpTimedOutRequest {
-  int64 timedout = 1;
+message CleanUpTimedOutResponse {
+  int64 timed_out = 1;
 }
 
 message EmptyRequest {}
@@ -95,4 +95,5 @@ service CorndogsService {
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {}
   rpc CompleteTask(CompleteTaskRequest) returns (CompleteTaskResponse) {}
   rpc CancelTask(CancelTaskRequest) returns (CancelTaskResponse) {}
+  rpc CleanUpTimedOut(CleanUpTimedOutRequest) returns (CleanUpTimedOutResponse) {}
 }
