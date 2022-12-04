@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.0...v1.1.1) (2022-12-04)
+
+
+### Bug Fixes
+
+* add response for CleanUpTimedOut and append request suffix ([6666426](https://github.com/TnLCommunity/protos-corndogs/commit/6666426eaa8293d961b74b13e11f0861fbca57e4))
+* add service endpoint, fix name of response ([1ecbafa](https://github.com/TnLCommunity/protos-corndogs/commit/1ecbafa6d7e71a436163998658d9202498e2a697))
+
 # [1.1.0](https://github.com/TnLCommunity/protos-corndogs/compare/v1.0.2...v1.1.0) (2022-12-01)
 
 
