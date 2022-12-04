@@ -78,8 +78,12 @@ message CancelTaskResponse {
   Task task = 1;
 }
 
-message CleanUpTimedOut {
+message CleanUpTimedOutRequest {
   int64 at_time = 1;
+}
+
+message CleanUpTimedOutRequest {
+  int64 timedout = 1;
 }
 
 message EmptyRequest {}
