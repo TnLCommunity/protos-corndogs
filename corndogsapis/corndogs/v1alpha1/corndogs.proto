@@ -37,8 +37,9 @@ message GetTaskStateByIDResponse {
 message GetNextTaskRequest {
   string queue = 1;
   string current_state = 2;
-  int64 timeout = 3;
-  string auto_target_state = 4;
+  int64 override_timeout = 3;
+  string override_current_state = 4;
+  string override_auto_target_state = 5;
 }
 
 message GetNextTaskResponse {
