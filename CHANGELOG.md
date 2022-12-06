@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.1...v1.1.2) (2022-12-06)
+
+
+### Bug Fixes
+
+* add an auto_target_state to GetNextTaskRequest ([e857930](https://github.com/TnLCommunity/protos-corndogs/commit/e857930743077a1f413bc8bda9ce35bd07fb589c))
+* use override prefix, add override_current_state ([537a094](https://github.com/TnLCommunity/protos-corndogs/commit/537a094a7b9de88904fb9726ec6c9ea4df897157))
+
 ## [1.1.1](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.0...v1.1.1) (2022-12-04)
 
 
