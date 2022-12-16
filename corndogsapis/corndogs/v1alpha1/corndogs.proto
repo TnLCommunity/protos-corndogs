@@ -82,6 +82,7 @@ message CancelTaskResponse {
 
 message CleanUpTimedOutRequest {
   int64 at_time = 1;
+  string queue = 2;
 }
 
 message CleanUpTimedOutResponse {
