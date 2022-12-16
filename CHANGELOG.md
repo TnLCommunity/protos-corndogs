@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.2...v1.1.3) (2022-12-16)
+
+
+### Bug Fixes
+
+* add a queue field to CleanUpTimedOutRequest ([3828012](https://github.com/TnLCommunity/protos-corndogs/commit/38280123c05e47932b6a8740e8e202d61e5ce2de))
+
 ## [1.1.2](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.1...v1.1.2) (2022-12-06)
 
 
