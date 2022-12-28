@@ -11,6 +11,7 @@ message Task { // Use only in responses
   int64 update_time = 6;
   int64 timeout = 7;
   bytes payload = 8;
+  int64 priority = 9;
 }
 
 message SubmitTaskRequest {
@@ -19,6 +20,7 @@ message SubmitTaskRequest {
   string auto_target_state = 3;
   int64 timeout = 4;
   bytes payload = 5;
+  int64 priority = 6;
 }
 
 message SubmitTaskResponse {
@@ -64,6 +66,7 @@ message UpdateTaskRequest {
   int64 timeout = 5;
   string new_state = 6;
   bytes payload = 7;
+  int64 priority = 8;
 }
 
 message UpdateTaskResponse {
