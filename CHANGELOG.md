@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.3...v1.2.0) (2022-12-28)
+
+
+### Features
+
+* add priority fields ([9259439](https://github.com/TnLCommunity/protos-corndogs/commit/9259439aaf3c4644195cfc02ff227acb3824e827))
+
 ## [1.1.3](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.2...v1.1.3) (2022-12-16)
 
 
