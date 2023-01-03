@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/TnLCommunity/protos-corndogs/compare/v1.2.0...v1.2.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* corndogs metrics protos ([c37a29d](https://github.com/TnLCommunity/protos-corndogs/commit/c37a29d227ba3a5357ab9bd238662cd04450f56d))
+* dont use EmptyRequest ([69d244e](https://github.com/TnLCommunity/protos-corndogs/commit/69d244e6ebcf7b880bade36a3391125f8ab01902))
+
 # [1.2.0](https://github.com/TnLCommunity/protos-corndogs/compare/v1.1.3...v1.2.0) (2022-12-28)
 
 
