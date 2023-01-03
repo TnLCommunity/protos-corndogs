@@ -92,11 +92,13 @@ message CleanUpTimedOutResponse {
   int64 timed_out = 1;
 }
 
+message GetQueuesRequest {}
 message GetQueuesResponse {
     repeated string queues = 1;
     int64 total_task_count = 2;
 }
 
+message GetQueueTaskCountsRequest {}
 message GetQueueTaskCountsResponse {
     map<string, int64> queue_counts = 1;
     int64 total_task_count = 2;
@@ -118,6 +120,7 @@ message QueueAndStateCounts {
     map<string, int64> state_counts = 3;
 }
 
+message GetQueueAndStateCountsRequest {}
 message GetQueueAndStateCountsResponse {
     map<string, QueueAndStateCounts> queue_and_state_counts = 1;
 }
@@ -133,8 +136,8 @@ service CorndogsService {
   rpc CancelTask(CancelTaskRequest) returns (CancelTaskResponse) {}
   rpc CleanUpTimedOut(CleanUpTimedOutRequest) returns (CleanUpTimedOutResponse) {}
   // Metrics
-  rpc GetQueues(EmptyRequest) returns (GetQueuesResponse) {}
-  rpc GetQueueTaskCounts(EmptyRequest) returns (GetQueueTaskCountsResponse) {}
+  rpc GetQueues(GetQueuesRequest) returns (GetQueuesResponse) {}
+  rpc GetQueueTaskCounts(GetQueueTaskCountsRequest) returns (GetQueueTaskCountsResponse) {}
   rpc GetTaskStateCounts(GetTaskStateCountsRequest) returns (GetTaskStateCountsResponse) {}
-  rpc GetQueueAndStateCounts(EmptyRequest) returns (GetQueueAndStateCountsResponse) {}
+  rpc GetQueueAndStateCounts(GetQueueAndStateCountsRequest) returns (GetQueueAndStateCountsResponse) {}
 }
