@@ -29,6 +29,11 @@ type CorndogsServiceClient interface {
 	CompleteTask(ctx context.Context, in *CompleteTaskRequest, opts ...grpc.CallOption) (*CompleteTaskResponse, error)
 	CancelTask(ctx context.Context, in *CancelTaskRequest, opts ...grpc.CallOption) (*CancelTaskResponse, error)
 	CleanUpTimedOut(ctx context.Context, in *CleanUpTimedOutRequest, opts ...grpc.CallOption) (*CleanUpTimedOutResponse, error)
+	// Metrics
+	GetQueues(ctx context.Context, in *GetQueuesRequest, opts ...grpc.CallOption) (*GetQueuesResponse, error)
+	GetQueueTaskCounts(ctx context.Context, in *GetQueueTaskCountsRequest, opts ...grpc.CallOption) (*GetQueueTaskCountsResponse, error)
+	GetTaskStateCounts(ctx context.Context, in *GetTaskStateCountsRequest, opts ...grpc.CallOption) (*GetTaskStateCountsResponse, error)
+	GetQueueAndStateCounts(ctx context.Context, in *GetQueueAndStateCountsRequest, opts ...grpc.CallOption) (*GetQueueAndStateCountsResponse, error)
 }
 
 type corndogsServiceClient struct {
@@ -102,6 +107,42 @@ func (c *corndogsServiceClient) CleanUpTimedOut(ctx context.Context, in *CleanUp
 	return out, nil
 }
 
+func (c *corndogsServiceClient) GetQueues(ctx context.Context, in *GetQueuesRequest, opts ...grpc.CallOption) (*GetQueuesResponse, error) {
+	out := new(GetQueuesResponse)
+	err := c.cc.Invoke(ctx, "/corndogs.v1alpha1.CorndogsService/GetQueues", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *corndogsServiceClient) GetQueueTaskCounts(ctx context.Context, in *GetQueueTaskCountsRequest, opts ...grpc.CallOption) (*GetQueueTaskCountsResponse, error) {
+	out := new(GetQueueTaskCountsResponse)
+	err := c.cc.Invoke(ctx, "/corndogs.v1alpha1.CorndogsService/GetQueueTaskCounts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *corndogsServiceClient) GetTaskStateCounts(ctx context.Context, in *GetTaskStateCountsRequest, opts ...grpc.CallOption) (*GetTaskStateCountsResponse, error) {
+	out := new(GetTaskStateCountsResponse)
+	err := c.cc.Invoke(ctx, "/corndogs.v1alpha1.CorndogsService/GetTaskStateCounts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *corndogsServiceClient) GetQueueAndStateCounts(ctx context.Context, in *GetQueueAndStateCountsRequest, opts ...grpc.CallOption) (*GetQueueAndStateCountsResponse, error) {
+	out := new(GetQueueAndStateCountsResponse)
+	err := c.cc.Invoke(ctx, "/corndogs.v1alpha1.CorndogsService/GetQueueAndStateCounts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CorndogsServiceServer is the server API for CorndogsService service.
 // All implementations should embed UnimplementedCorndogsServiceServer
 // for forward compatibility
@@ -113,6 +154,11 @@ type CorndogsServiceServer interface {
 	CompleteTask(context.Context, *CompleteTaskRequest) (*CompleteTaskResponse, error)
 	CancelTask(context.Context, *CancelTaskRequest) (*CancelTaskResponse, error)
 	CleanUpTimedOut(context.Context, *CleanUpTimedOutRequest) (*CleanUpTimedOutResponse, error)
+	// Metrics
+	GetQueues(context.Context, *GetQueuesRequest) (*GetQueuesResponse, error)
+	GetQueueTaskCounts(context.Context, *GetQueueTaskCountsRequest) (*GetQueueTaskCountsResponse, error)
+	GetTaskStateCounts(context.Context, *GetTaskStateCountsRequest) (*GetTaskStateCountsResponse, error)
+	GetQueueAndStateCounts(context.Context, *GetQueueAndStateCountsRequest) (*GetQueueAndStateCountsResponse, error)
 }
 
 // UnimplementedCorndogsServiceServer should be embedded to have forward compatible implementations.
@@ -139,6 +185,18 @@ func (UnimplementedCorndogsServiceServer) CancelTask(context.Context, *CancelTas
 }
 func (UnimplementedCorndogsServiceServer) CleanUpTimedOut(context.Context, *CleanUpTimedOutRequest) (*CleanUpTimedOutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CleanUpTimedOut not implemented")
+}
+func (UnimplementedCorndogsServiceServer) GetQueues(context.Context, *GetQueuesRequest) (*GetQueuesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetQueues not implemented")
+}
+func (UnimplementedCorndogsServiceServer) GetQueueTaskCounts(context.Context, *GetQueueTaskCountsRequest) (*GetQueueTaskCountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetQueueTaskCounts not implemented")
+}
+func (UnimplementedCorndogsServiceServer) GetTaskStateCounts(context.Context, *GetTaskStateCountsRequest) (*GetTaskStateCountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskStateCounts not implemented")
+}
+func (UnimplementedCorndogsServiceServer) GetQueueAndStateCounts(context.Context, *GetQueueAndStateCountsRequest) (*GetQueueAndStateCountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetQueueAndStateCounts not implemented")
 }
 
 // UnsafeCorndogsServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -278,6 +336,78 @@ func _CorndogsService_CleanUpTimedOut_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CorndogsService_GetQueues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetQueuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CorndogsServiceServer).GetQueues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/corndogs.v1alpha1.CorndogsService/GetQueues",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CorndogsServiceServer).GetQueues(ctx, req.(*GetQueuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CorndogsService_GetQueueTaskCounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetQueueTaskCountsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CorndogsServiceServer).GetQueueTaskCounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/corndogs.v1alpha1.CorndogsService/GetQueueTaskCounts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CorndogsServiceServer).GetQueueTaskCounts(ctx, req.(*GetQueueTaskCountsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CorndogsService_GetTaskStateCounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskStateCountsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CorndogsServiceServer).GetTaskStateCounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/corndogs.v1alpha1.CorndogsService/GetTaskStateCounts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CorndogsServiceServer).GetTaskStateCounts(ctx, req.(*GetTaskStateCountsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CorndogsService_GetQueueAndStateCounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetQueueAndStateCountsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CorndogsServiceServer).GetQueueAndStateCounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/corndogs.v1alpha1.CorndogsService/GetQueueAndStateCounts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CorndogsServiceServer).GetQueueAndStateCounts(ctx, req.(*GetQueueAndStateCountsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CorndogsService_ServiceDesc is the grpc.ServiceDesc for CorndogsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -312,6 +442,22 @@ var CorndogsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CleanUpTimedOut",
 			Handler:    _CorndogsService_CleanUpTimedOut_Handler,
+		},
+		{
+			MethodName: "GetQueues",
+			Handler:    _CorndogsService_GetQueues_Handler,
+		},
+		{
+			MethodName: "GetQueueTaskCounts",
+			Handler:    _CorndogsService_GetQueueTaskCounts_Handler,
+		},
+		{
+			MethodName: "GetTaskStateCounts",
+			Handler:    _CorndogsService_GetTaskStateCounts_Handler,
+		},
+		{
+			MethodName: "GetQueueAndStateCounts",
+			Handler:    _CorndogsService_GetQueueAndStateCounts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
